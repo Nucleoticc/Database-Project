@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page" style="margin-top: 5px; margin-bottom: 5px">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace" style="text-align: center">{{ aname }}</h1>
+    </div>
+    <div
+      class="card-body d-flex justify-content-center flex-wrap"
+      style="text-align: center"
+    >
+      {% for error in form.errors %}
+      <span style="color: red">{{ error }}</span>
+      {% endfor %}
+      <form method="POST">
+        {{ form.hidden_tag() }} {% for quest in total_questions %}
+        <div class="form-group">
+          {{ "Question"~loop.index }} {{
+          form|attr(quest[0])(class="form-control") }}
+          <div class="d-flex flex-wrap" style="text-align: center">
+            <div
+              class="d-inline-flex align-items-center"
+              style="margin-right: 32px"
+            >
+              {{ form|attr(quest[1])(placeholder="Choice 1",
+              class="form-control", type="text", style="width: 102px") }}
+            </div>
+            <div
+              class="d-inline-flex align-items-center"
+              style="margin-right: 32px"
+            >
+              {{ form|attr(quest[2])(placeholder="Choice 2",
+              class="form-control", type="text", style="width: 102px") }}
+            </div>
+            <div
+              class="d-inline-flex align-items-center"
+              style="margin-right: 32px"
+            >
+              {{ form|attr(quest[3])(placeholder="Choice 3",
+              class="form-control", type="text", style="width: 102px") }}
+            </div>
+            <div
+              class="d-inline-flex align-items-center"
+              style="margin-right: 32px"
+            >
+              {{ form|attr(quest[4])(placeholder="Choice 4",
+              class="form-control", type="text", style="width: 102px") }}
+            </div>
+          </div>
+          <label class="d-inline">Answer:&nbsp;</label>
+          {{ form|attr(quest[5])(class="form-control d-inline", type="number",
+          style="width: 80px;", min="1", max="4") }}
+        </div>
+        {% endfor %} {{ form.submit(class="btn btn-primary", type="submit") }}
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

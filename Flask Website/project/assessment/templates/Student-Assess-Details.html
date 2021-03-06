@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace" style="text-align: center">
+        {{rate_assessment.assessment.name}}
+      </h1>
+    </div>
+    <div
+      class="card-body d-flex justify-content-start flex-wrap"
+      style="text-align: center"
+    >
+        {% set marks = total_marks/(questions|length) %}
+      {% for question in questions %}
+        <div class="text-left" style="width: 70%; border: 2px; border-color: aqua;">
+            <p class="text-left">{{loop.index}}) {{question.text}}</p>
+            <div>
+             <label style="margin-left: 3%; margin-right: 3%">{{question.op1}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op2}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op3}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op4}}</label>
+            </div>
+            <div>
+              {% if question.correct_op == answers[loop.index0] %}
+                <label style="margin-left: 3%; margin-right: 3%; color: green;">Correct Answer: {{question.correct_op}}</label>
+                <label style="margin-left: 3%; margin-right: 3%; color: green;">Your Answer: {{answers[loop.index0]}}</label>  
+              {% else %}
+                <label style="margin-left: 3%; margin-right: 3%; color: red;">Correct Answer: {{question.correct_op}}</label>
+                <label style="margin-left: 3%; margin-right: 3%; color: red;">Your Answer: {{answers[loop.index0]}}</label>
+              {% endif %}
+            <label style="margin-left: 3%; margin-right: 3%">Marks: {{ marks }}</label>
+            </div>
+        </div>
+        {% if loop.index == 1 %}
+            <div style="width: 30%">
+              <h4>Total Marks: {{ total_marks }}</h4>
+              <h4>Marks Obtained: {{ omarks }}</h4>
+              <h5>Rating: {{ rate_assessment.rating }}</h5>
+              <h5>Difficulty: {{ questions[0].assessment.difficulty }}</h5>
+              <h5>Category: {{ questions[0].assessment.category.name }}</h5>
+            </div>
+        {% endif %}
+      {% endfor %}
+      <div style="width: 100%">
+          <a class="btn btn-primary text-center" style="margin-right: 3%; margin-left: 3%" href="{{ url_for('student.completed_assessment') }}">Back</a>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

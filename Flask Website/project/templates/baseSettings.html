@@ -1,0 +1,74 @@
+{% extends "base.html" %} 
+{% block content %}
+<main class="page login-page">
+  {% if session['user'] == "Student" %}
+  <div class="d-flex justify-content-center" style="margin: 29px">
+    <img
+      class="rounded-circle img-fluid"
+      src="{{url_for('static', filename='student/'+current_user.profile_img)}}"
+      width="150"
+      height="150"
+    />
+  </div>
+  {% elif session['user'] == "Examiner" %}
+  <div class="d-flex justify-content-center" style="margin: 29px">
+    <img
+      class="rounded-circle img-fluid"
+      src="{{url_for('static', filename='examiner/'+current_user.profile_img)}}"
+      width="150"
+      height="150"
+    />
+  </div>
+  {% endif %}
+  <div>
+    <h3 class="text-center">{{fname}} {{lname}}</h3>
+    <h4 class="text-center">{{uname}}</h4>
+    <h4 class="text-center">{{ email }}</h4>
+    <h4 class="text-center">Account Type: {{ session['user'] }}</h4>
+  </div>
+  <div class="card" style="margin-right: 90px; margin-left: 90px">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        {% if session['user'] == "Student" %}
+        <li class="nav-item"><a class="nav-link" id="profile" href="{{ url_for('student.profile') }}">Basic</a></li>
+        <li class="nav-item"><a class="nav-link" id="photo" href="{{ url_for('student.profilepic') }}">Photo</a></li>
+        <li class="nav-item"><a class="nav-link" id="security" href="{{ url_for('student.security') }}">Security</a></li>
+        <li class="nav-item"><a class="nav-link" id="deactivate" href="{{ url_for('student.deactivate') }}">Deactivate</a></li>
+        {% elif session['user'] == "Examiner" %}
+        <li class="nav-item"><a class="nav-link" id="profile" href="{{ url_for('examiner.profile') }}">Basic</a></li>
+        <li class="nav-item"><a class="nav-link" id="photo" href="{{ url_for('examiner.profilepic') }}">Photo</a></li>
+        <li class="nav-item"><a class="nav-link" id="security" href="{{ url_for('examiner.security') }}">Security</a></li>
+        <li class="nav-item"><a class="nav-link" id="deactivate" href="{{ url_for('examiner.deactivate') }}">Deactivate</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% block content2 %} {% endblock %}
+  </div>
+</main>
+  <script>
+      if (window.location.pathname == '/student/profile'){
+        document.getElementById('profile').classList.add('active')
+      }
+      if (window.location.pathname == '/student/profilepic'){
+        document.getElementById('photo').classList.add('active')
+      }
+      if (window.location.pathname == '/student/security'){
+        document.getElementById('security').classList.add('active')
+      }
+      if (window.location.pathname == '/student/deactivate'){
+        document.getElementById('deactivate').classList.add('active')
+      }
+      if (window.location.pathname == '/examiner/profile'){
+        document.getElementById('profile').classList.add('active')
+      }
+      if (window.location.pathname == '/examiner/profilepic'){
+        document.getElementById('photo').classList.add('active')
+      }
+      if (window.location.pathname == '/examiner/security'){
+        document.getElementById('security').classList.add('active')
+      }
+      if (window.location.pathname == '/examiner/deactivate'){
+        document.getElementById('deactivate').classList.add('active')
+      }
+  </script>
+{% endblock %}

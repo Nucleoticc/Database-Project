@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html style="font-family: Alef, sans-serif;"> 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Xpert</title>
+    <link rel="stylesheet" href="/../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alef">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="/../static/css/styles.min.css">
+</head>
+
+<body style="font-family: Alef, sans-serif;">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="{{ url_for('index') }}" style="color: var(--blue);font-size: 26px;text-align: center;height: 58px;">Xpert</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-center" id="navcol-1">
+                <ul class="nav navbar-nav flex-grow-0 ml-auto">
+                    <li class="nav-item item">
+                        <a class="nav-link" href="{{url_for('leaderboard.leaderboard')}}">Leaderboard</a>
+                    </li>
+                    <li class="nav-item item">
+                        <a class="nav-link" href="{{url_for('categories.list_courses')}}">Categories</a>
+                    </li>
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Student</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('student.login') }}">Login</a>
+                            <a class="dropdown-item" href="{{ url_for('student.register') }}">Register</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Examiner</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('examiner.login') }}">Login</a>
+                            <a class="dropdown-item" href="{{ url_for('examiner.register') }}">Register</a></div>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Options</a>
+                        <div class="dropdown-menu">
+                            {% if session['user']=='Student' %}
+                            <a class="dropdown-item" href="{{ url_for('student.profile') }}">Profile</a>
+                            <a class="dropdown-item" href="{{ url_for('student.completed_assessment') }}">DashBoard</a>
+                            <a class="dropdown-item" href="{{ url_for('student.logout') }}">Logout</a></div>
+                            {% elif session['user']=='Examiner' %}
+                            <a class="dropdown-item" href="{{ url_for('examiner.profile') }}">Profile</a>
+                            <a class="dropdown-item" href="{{ url_for('examiner.new_assessment') }}">DashBoard</a>
+                            <a class="dropdown-item" href="{{ url_for('examiner.logout') }}">Logout</a></div>
+                            {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    {% block content %}
+    
+    {% endblock %}
+    <footer class="page-footer dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2020 Copyright Text</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="/../static/js/script.min.js"></script>
+    
+</body>
+
+</html>

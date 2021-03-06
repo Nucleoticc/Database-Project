@@ -1,0 +1,33 @@
+{% extends "baseSettings.html" %}
+
+{% block content2 %}
+<div class="card-body">
+  <h4 class="d-flex justify-content-center card-title">Basic Information</h4>
+  <form class="text-center justify-content-center" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group text-center" style="margin-bottom: 40px">
+      <h5>Change Firstname</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.firstname(class="form-control d-flex d-lg-flex", type="text", style="width: 300px", placeholder="First name") }}
+      </div>
+    </div>
+    <div class="form-group d-block" style="margin-bottom: 40px">
+      <h5>Change Lastname</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.lastname(class="form-control d-flex d-lg-flex", type="text", style="width: 300px", placeholder="Last name") }}
+      </div>
+    </div>
+    <div class="form-group d-block" style="margin-bottom: 40px">
+      <h5>Edit Bio</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.bio(class="form-control", style="width: 300px") }}
+      </div>
+    </div>
+    <div class="form-group d-block" style="margin-bottom: 40px">
+      <div class="d-flex justify-content-center">
+        {{ form.submit(class="btn btn-primary", type="submit") }}
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

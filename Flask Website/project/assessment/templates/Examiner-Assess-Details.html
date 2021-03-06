@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace" style="text-align: center">
+        {{assessment.name}}
+      </h1>
+    </div>
+    <div
+      class="card-body d-flex justify-content-start flex-wrap"
+      style="text-align: center"
+    >
+        {% set marks = total_marks/(questions|length) %}
+      {% for question in questions %}
+        <div class="text-left" style="width: 70%">
+            <p class="text-left">{{loop.index}}) {{question.text}}</p>
+            <div>
+             <label style="margin-left: 3%; margin-right: 3%">{{question.op1}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op2}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op3}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">{{question.op4}}</label>
+            </div>
+            <div>
+            <label style="margin-left: 3%; margin-right: 3%">Answer: {{question.correct_op}}</label
+            ><label style="margin-left: 3%; margin-right: 3%">Marks: {{ marks }}</label>
+            </div>
+        </div>
+        {% if loop.index == 1 %}
+            <div style="width: 30%">
+            <h4>Rating: {{ assessment.avg_rating }}</h4>
+            <h4>Difficulty: {{ assessment.difficulty }}</h4>
+            <h4>Category: {{ category }}</h4>
+            <h4>Status: {{ assessment.status }}</h4>
+            <h4>Total Marks: {{ total_marks }}</h4>
+            </div>
+        {% endif %}
+      {% endfor %}
+      <div style="width: 100%">
+        <form method="POST">
+            <a class="btn btn-primary text-center" style="margin-right: 3%; margin-left: 3%" href="/examiner/listAssessment">Back</a>
+            {{ form.hidden_tag() }}
+            {{ form.submit(class="btn btn-danger text-center", type="submit", style="margin-right: 3%; margin-left: 3%") }}
+        </form>
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

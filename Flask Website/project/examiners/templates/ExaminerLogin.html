@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page">
+  <section class="clean-block clean-form dark">
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">Examiner LogIn</h2>
+      </div>
+      <div class="container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      <form class="shadow-lg" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.email.label }} {{ form.email(class="form-control item",
+          type="email", id="email", autofocus="", required="") }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }} {{ form.password(class="form-control",
+          type="password", id="password", required="") }}
+        </div>
+        <div class="form-group">
+          <a class="d-lg-flex justify-content-lg-center" href="{{ url_for('examiner.register') }}"
+            >Dont have an account yet? Signup</a
+          >
+        </div>
+        {{ form.submit(class="btn btn-primary btn-block", type="submit") }}
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}

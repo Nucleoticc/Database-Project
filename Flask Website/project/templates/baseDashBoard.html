@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page" style="margin-top: 5%; margin-bottom: 5%;">
+  <div>
+    <h3 class="text-center">{{uname}}'s Dashboard</h3>
+  </div>
+  <div class="card" style="margin-right: 90px; margin-left: 90px">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        {% if session['user'] == "Student" %}
+        <li class="nav-item"><a class="nav-link" id="completed" href="{{url_for('student.completed_assessment')}}">Completed</a></li>
+        <li class="nav-item"><a class="nav-link" id="recommended" href="{{url_for('student.recommended_assessment')}}">Recommended</a></li>
+        <li class="nav-item"><a class="nav-link" id="new" href="{{url_for('student.new_assessment')}}">New</a></li>
+        {% elif session['user'] == "Examiner" %}
+        <li class="nav-item"><a class="nav-link" id="new" href="{{url_for('examiner.new_assessment')}}">New</a></li>
+        <li class="nav-item"><a class="nav-link" id="deployed" href="{{url_for('examiner.list_assessment')}}">Deployed</a></li>
+        <li class="nav-item"><a class="nav-link" id="chatroom" href="{{url_for('examiner.chatroom')}}">Chatroom</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% block content3 %} {% endblock %}
+  </div>
+</main>
+  <script>
+    if (window.location.pathname == '/student/completed'){
+      document.getElementById('completed').classList.add('active')
+    }
+    if (window.location.pathname == '/student/recommended'){
+      document.getElementById('recommended').classList.add('active')
+    }
+    if (window.location.pathname == '/student/new'){
+      document.getElementById('new').classList.add('active')
+    }
+    if (window.location.pathname == '/examiner/newAssessment'){
+      document.getElementById('new').classList.add('active')
+    }
+    if (window.location.pathname == '/examiner/listAssessment'){
+      document.getElementById('deployed').classList.add('active')
+    }
+    if (window.location.pathname == '/examiner/chatroom'){
+      document.getElementById('chatroom').classList.add('active')
+    }
+  </script>
+{% endblock %}

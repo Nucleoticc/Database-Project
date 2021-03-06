@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block content %}
+<main class="page landing-page">
+  <section
+    class="clean-block clean-hero"
+    style="
+      color: rgba(9, 162, 255, 0.6);
+      background: url('../static/img/undraw_road_to_knowledge_m8s0.svg') center
+        no-repeat;
+    "
+  >
+    <div class="text">
+      <h1 class="text-center shadow">The Ultimate Assessment Sandbox</h1>
+      <p>
+        A competitive space for students to test their mettle and unlock their
+        true potential by competing against each other in different subjects
+      </p>
+    </div>
+  </section>
+  <section class="clean-block features">
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">For Students</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-5 feature-box">
+          <i class="icon-star icon"></i>
+          <h4>Leaderboards</h4>
+          <p>
+            Compete against thousands of other students by acing your
+            assessments.
+          </p>
+        </div>
+        <div class="col-md-5 feature-box">
+          <i class="icon-pencil icon"></i>
+          <h4>Premium Grade Assessments</h4>
+          <p>
+            Our standard enrollment exam for examiners make sure that students
+            get the best and most useful assessments to enhance their skills.
+          </p>
+        </div>
+        <div class="col-md-5 feature-box">
+          <i class="icon-screen-smartphone icon"></i>
+          <h4>Platform independant</h4>
+          <p>
+            All assessments can be solved and submitted on all devices so our
+            students can concentrate on solving the assessments
+          </p>
+        </div>
+        <div class="col-md-5 feature-box">
+          <i class="icon-refresh icon"></i>
+          <h4>Assessment Retake Feature</h4>
+          <p>
+            Performed poorly in an assessment? No worries, review the notes and
+            websites provided by teachers and retake the assessment.
+          </p>
+        </div>
+      </div>
+    </div>
+    {% if current_user.is_anonymous %}
+    <div class="d-flex justify-content-center">
+      <a
+        class="btn btn-primary text-left d-lg-flex"
+        role="button"
+        href="{{ url_for('student.register') }}"
+        >Signup as Student<br
+      /></a>
+    </div>
+    {% endif %}
+  </section>
+  <section class="clean-block features">
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">For Examiners</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-5 feature-box">
+          <i class="icon-star icon"></i>
+          <h4>Rewards</h4>
+          <p>Get bonus reward for positive reviews by students</p>
+        </div>
+        <div class="col-md-5 feature-box">
+          <i class="icon-screen-smartphone icon"></i>
+          <h4>Platform independant</h4>
+          <p>
+            All assessments can be made and submitted on all devices so our
+            examiners can concentrate on solving the assessments
+          </p>
+        </div>
+        <div class="col-md-5 feature-box">
+          <i class="icon-refresh icon"></i>
+          <h4>Flexible</h4>
+          <p>
+            Either put up your own resources or provide link for one for each
+            assessment
+          </p>
+        </div>
+      </div>
+    </div>
+    {% if current_user.is_anonymous %}
+    <div class="d-flex justify-content-center">
+      <a
+        class="btn btn-primary text-left d-lg-flex"
+        role="button"
+        href="{{ url_for('examiner.register') }}"
+        >Signup as Examiner</a
+      >
+    </div>
+    {% endif %}
+  </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "baseSettings.html" %}
+
+{% block content2 %}
+<div class="card-body">
+  <h4 class="d-flex justify-content-center card-title">Deactivate Account</h4>
+  <form class="text-center justify-content-center" method="POST">
+    {{ form.hidden_tag() }}
+    <h5 style="color: var(--danger)">Warning: All data will be deleted</h5>
+    <div class="form-group text-center" style="margin-bottom: 20px">
+      <div class="d-flex justify-content-center" style="margin-bottom: 20px">
+        {{ form.confirmpassword(class="form-control", type="password", style="width: 300px", id="password", placeholder="Confirm Password") }}
+      </div>
+    </div>
+    {{ form.submit(class="btn", type="submit", style="color: var(--danger); border-color: var(--danger)") }}
+  </form>
+</div>
+{% endblock %}

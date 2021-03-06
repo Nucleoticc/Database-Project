@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+
+<main class="page login-page">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace text-uppercase" style="text-align: center">
+        LeaderBoard
+      </h1>
+    </div>
+    <div
+      class="card-body d-flex justify-content-center flex-wrap"
+      style="margin-bottom: 50px;text-align: center; box-shadow: 8px 8px 15px 0px var(--blue)"
+    >
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>UserName</th>
+              <th style="width: 30%">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in students %} 
+            {% if loop.index < 4 %}
+            <tr>
+              <td
+                class="text-center d-flex justify-content-center align-items-md-center"
+              >
+                <img src={{"../../static/img/crown"~ loop.index ~".svg"}}
+                width="30" height="30" style="text-align: left; margin-right:
+                20px" />{{ student.uname }}
+              </td>
+              <td style="width: 30%">{{ student.score }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td
+                class="text-center d-flex justify-content-center align-items-md-center"
+              >
+                {{ student.uname }}
+              </td>
+              <td style="width: 30%">{{ student.score }}</td>
+            </tr>
+            {% endif %} {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

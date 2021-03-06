@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page" style="margin-top: 5px; margin-bottom: 5px">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace" style="text-align: center">{{ questions[0].assessment.name }}</h1>
+      <h4 class="text-monospace" style="text-align: center">Total Marks: {{ total_marks }}</h4>
+    </div>
+    <div
+      class="card-body d-flex flex-wrap"
+    >
+      {% for error in form.errors %}
+      <span style="color: red">{{ error }}</span>
+      {% endfor %}
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {% for quest in questions %}
+        <div class="form-group" >
+          <p class="form-input">
+            {{ "Question "~loop.index~") " }} 
+            {{ quest.text }} 
+          </p>  
+          <div class="d-flex flex-wrap">
+              {{ form|attr(choices[loop.index0])(class='form-check') }} 
+          </div>
+        </div>
+        {% endfor %} {{ form.submit(class="btn btn-primary", type="submit") }}
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

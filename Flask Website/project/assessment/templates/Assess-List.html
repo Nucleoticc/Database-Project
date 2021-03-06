@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+
+<main class="page login-page">
+  <div class="card" style="margin-right: 90px; margin-left: 90px">
+    <div class="card-header">
+      <h1 class="text-monospace text-uppercase" style="text-align: center">
+        Assessment List
+      </h1>
+    </div>
+    <div
+      class="card-body d-flex justify-content-center flex-wrap"
+      style="text-align: center"
+    >
+      {% for assessment in assessments %}
+      <div class="card" style="margin: 2px;text-align: center;border-width: 2px;border-color: aqua;">
+        <div class="card-body" style="text-align: center">
+          <h2 class="card-title">{{ assessment.name }}</h2>
+          <p>{{ assessment.examiner.name }}</p>   
+          <p>{{ assessment.rating }}</p> 
+          <p>{{ assessment.difficulty }}</p>     
+          <a class="btn btn-primary" href="{{ url_for('assessment.solve_assessment', assessment_id=assessment.id) }}">Solve</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}

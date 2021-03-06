@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<main class="page login-page">
+  <div class="card" style="margin-right: 50px; margin-left: 50px">
+    <div class="card-header">
+      <h1 class="text-monospace" style="text-align: center">
+        {{solved_assessment.assessment.name}}
+      </h1>
+      <h4>You earned: {{ solved_assessment.marks }}</h4>
+      <h4>Your Total Score: {{ solved_assessment.student.score }}</h4>
+    </div>
+    <div
+      class="card-body d-flex justify-content-start flex-wrap"
+      style="text-align: center"
+    >
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <label>Rate the assessment (1-5): </label>
+            {{ form.rating(class="form-control", style="margin-bottom: 3%") }}
+            {{ form.submit(class="btn btn-primary text-center", type="submit", style="margin-right: 3%; margin-left: 3%") }}
+        </form>
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

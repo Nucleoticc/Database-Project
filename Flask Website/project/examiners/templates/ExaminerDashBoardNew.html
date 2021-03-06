@@ -1,0 +1,45 @@
+{% extends "baseDashBoard.html" %} 
+
+{% block content3 %}
+<div class="card-body" style="text-align: center">
+  <h4 class="d-flex justify-content-center card-title">
+    Create New Assessment
+  </h4>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">
+      &times;
+    </button>
+    {{ message }}
+  </div>
+  {% endfor %}
+  <form class="text-center justify-content-center" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group text-center" style="margin-bottom: 40px">
+      <h5>Name</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.name(class="form-control d-flex d-lg-flex", type="text", style="width: 300px") }}
+      </div>
+    </div>
+    <div class="form-group text-center" style="margin-bottom: 40px">
+      <h5>Difficulty</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.difficulty(class="form-control d-flex d-lg-flex", style="width: 300px") }}
+      </div>
+    </div>
+    <div class="form-group text-center" style="margin-bottom: 40px">
+      <h5>Number of Questions</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.num_questions(class="form-control d-flex d-lg-flex", type="number", style="width: 300px") }}
+      </div>
+    </div>
+    <div class="form-group d-block" style="margin-bottom: 40px">
+      <h5>Category</h5>
+      <div class="d-flex justify-content-center">
+        {{ form.category_name(class="form-control", style="width: 300px") }}
+      </div>
+    </div>
+    {{ form.submit(class="btn btn-primary", type="submit") }}
+  </form>
+</div>
+{% endblock %}
